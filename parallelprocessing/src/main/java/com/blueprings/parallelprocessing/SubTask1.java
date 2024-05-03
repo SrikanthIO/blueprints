@@ -1,0 +1,53 @@
+package com.blueprings.parallelprocessing;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@AllArgsConstructor
+@Setter
+@Getter
+public class SubTask1 implements ParallelTask {
+
+	private String id;
+	private Map<String, Object> context;
+	public static final Logger LOGGER = LoggerFactory.getLogger(SubTask1.class);
+
+	@Override
+	public Map<String, Object> execute() {
+		LOGGER.info("***********In Subtask1[" + id + "]************");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// do nothing;
+		}
+		// execute backend code
+		Map<String, Object> data = new HashMap<String, Object>();
+		LOGGER.info("***********Completed Subtask1[" + id + "******");
+		return data;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Map<String, Object> getContext() {
+		return context;
+	}
+
+	public void setContext(Map<String, Object> context) {
+		this.context = context;
+	}
+
+}
